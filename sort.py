@@ -21,3 +21,31 @@ class Sort:
             for j in range(i, len(collection)):
                 if collection[j] < collection[i]:
                     self._swap(collection, i, j)
+
+    def HeapSort(self, collection):
+        def _createHeap(index, length):
+            leftIndex = 2 * index + 1
+            rightIndex = 2 * index + 2
+            isHeap = ((leftIndex >= length or collection[index] >= collection[leftIndex]) and
+                      (rightIndex >= length or collection[index] >= collection[rightIndex]))
+            if not isHeap:
+                swapIndex = None
+                if leftIndex >= length:
+                    swapIndex = rightIndex
+                elif rightIndex >= length:
+                    swapIndex = leftIndex
+                elif collection[leftIndex] > collection[rightIndex]:
+                    swapIndex = leftIndex
+                else:
+                    swapIndex = rightIndex
+                self._swap(collection, index, swapIndex)
+                _createHeap(swapIndex, length)
+
+        # Heapify
+        for i in reversed(range(len(collection))):
+            _createHeap(i, len(collection))
+
+        # Remove elements from top of the heap and place to the end.
+        for i in reversed(range(len(collection))):
+            self._swap(collection, 0, i)
+            _createHeap(0, i)

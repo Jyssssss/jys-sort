@@ -1,14 +1,18 @@
 import sort
 
-mySort = sort.Sort()
-arr = [9, 0, 2, 5, 7, 1, 3, 4, 8, 6, 10]
-mySort.BubbleSort(arr)
-print('Bubble Sort:   ', arr)
+jysSort = sort.Sort()
+collection = [9, 2, 5, 7, 1, 3, 4, 8, 6, 10]
+jysSort.BubbleSort(collection)
+print('Bubble Sort:   ', collection)
 
-arr = [9, 0, 2, 5, 7, 1, 3, 4, 8, 6, 10]
-mySort.InsertionSort(arr)
-print('Insertion Sort:', arr)
+collection = [9, 2, 5, 7, 1, 3, 4, 8, 6, 10]
+jysSort.InsertionSort(collection)
+print('Insertion Sort:', collection)
 
-arr = [9, 0, 2, 5, 7, 1, 3, 4, 8, 6, 10]
-mySort.SelectionSort(arr)
-print('Insertion Sort:', arr)
+collection = [9, 2, 5, 7, 1, 3, 4, 8, 6, 10]
+jysSort.SelectionSort(collection)
+print('Selection Sort:', collection)
+
+collection = [9, 2, 5, 7, 1, 3, 4, 8, 6, 10]
+jysSort.HeapSort(collection)
+print('Heap Sort:     ', collection)
