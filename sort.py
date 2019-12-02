@@ -49,3 +49,22 @@ class Sort:
         for i in reversed(range(len(collection))):
             self._swap(collection, 0, i)
             _createHeap(0, i)
+
+    def QuickSort(self, collection):
+        def _partition(start, end):
+            pivot = collection[end]
+            j = start
+            for i in range(start, end):
+                if collection[i] < pivot:
+                    self._swap(collection, i, j)
+                    j += 1
+            self._swap(collection, end, j)
+            return j
+
+        def _quicksort(start, end):
+            if start < end:
+                mid = _partition(start, end)
+                _quicksort(start, mid - 1)
+                _quicksort(mid + 1, end)
+
+        _quicksort(0, len(collection) - 1)

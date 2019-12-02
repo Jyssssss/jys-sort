@@ -16,3 +16,7 @@ print('Selection Sort:', collection)
 collection = [9, 2, 5, 7, 1, 3, 4, 8, 6, 10]
 jysSort.HeapSort(collection)
 print('Heap Sort:     ', collection)
+
+collection = [9, 2, 5, 7, 1, 3, 4, 8, 6, 10]
+jysSort.QuickSort(collection)
+print('Quick Sort:    ', collection)
