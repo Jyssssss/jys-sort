@@ -1,8 +1,6 @@
 class Sort:
     def _swap(self, collection, i, j):
-        temp = collection[i]
-        collection[i] = collection[j]
-        collection[j] = temp
+        collection[i], collection[j] = collection[j], collection[i]
 
     def BubbleSort(self, collection):
         for i in range(len(collection), 0, -1):
