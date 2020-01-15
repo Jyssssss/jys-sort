@@ -59,10 +59,30 @@ class Sort:
             self._swap(collection, end, j)
             return j
 
-        def _quicksort(start, end):
+        def _quickSort(start, end):
             if start < end:
                 mid = _partition(start, end)
-                _quicksort(start, mid - 1)
-                _quicksort(mid + 1, end)
+                _quickSort(start, mid - 1)
+                _quickSort(mid + 1, end)
 
-        _quicksort(0, len(collection) - 1)
+        _quickSort(0, len(collection) - 1)
+
+    def MergeSort(self, collection):
+        def _mergeSort(subcollection):
+            if len(subcollection) == 1:
+                return subcollection
+            else:
+                left = _mergeSort(subcollection[:len(subcollection) // 2])
+                right = _mergeSort(subcollection[len(subcollection) // 2:])
+                l, r, i = 0, 0, 0
+                while l < len(left) or r < len(right):
+                    if r == len(right) or (l < len(left) and left[l] < right[r]):
+                        subcollection[i] = left[l]
+                        l += 1
+                    else:
+                        subcollection[i] = right[r]
+                        r += 1
+                    i += 1
+                return subcollection
+
+        _mergeSort(collection)
