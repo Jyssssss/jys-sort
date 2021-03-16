@@ -2,53 +2,53 @@ class Sort:
     def _swap(self, collection, i, j):
         collection[i], collection[j] = collection[j], collection[i]
 
-    def BubbleSort(self, collection):
+    def bubble_sort(self, collection):
         for i in range(len(collection), 0, -1):
             for j in range(i - 1):
                 if collection[j] > collection[j + 1]:
                     self._swap(collection, j, j + 1)
 
-    def InsertionSort(self, collection):
+    def insertion_sort(self, collection):
         for i in range(len(collection)):
             for j in range(i):
                 if collection[i] < collection[j]:
                     self._swap(collection, i, j)
 
-    def SelectionSort(self, collection):
+    def selection_sort(self, collection):
         for i in range(len(collection)):
             for j in range(i, len(collection)):
                 if collection[j] < collection[i]:
                     self._swap(collection, i, j)
 
-    def HeapSort(self, collection):
-        def _createHeap(index, length):
-            leftIndex = 2 * index + 1
-            rightIndex = 2 * index + 2
-            isHeap = ((leftIndex >= length or collection[index] >= collection[leftIndex]) and
-                      (rightIndex >= length or collection[index] >= collection[rightIndex]))
-            if not isHeap:
-                swapIndex = None
-                if leftIndex >= length:
-                    swapIndex = rightIndex
-                elif rightIndex >= length:
-                    swapIndex = leftIndex
-                elif collection[leftIndex] > collection[rightIndex]:
-                    swapIndex = leftIndex
+    def heap_sort(self, collection):
+        def _create_heap(index, length):
+            left_index = 2 * index + 1
+            right_index = 2 * index + 2
+            is_heap = ((left_index >= length or collection[index] >= collection[left_index]) and
+                       (right_index >= length or collection[index] >= collection[right_index]))
+            if not is_heap:
+                swap_index = None
+                if left_index >= length:
+                    swap_index = right_index
+                elif right_index >= length:
+                    swap_index = left_index
+                elif collection[left_index] > collection[right_index]:
+                    swap_index = left_index
                 else:
-                    swapIndex = rightIndex
-                self._swap(collection, index, swapIndex)
-                _createHeap(swapIndex, length)
+                    swap_index = right_index
+                self._swap(collection, index, swap_index)
+                _create_heap(swap_index, length)
 
         # Heapify
         for i in reversed(range(len(collection))):
-            _createHeap(i, len(collection))
+            _create_heap(i, len(collection))
 
         # Remove elements from top of the heap and place to the end.
         for i in reversed(range(len(collection))):
             self._swap(collection, 0, i)
-            _createHeap(0, i)
+            _create_heap(0, i)
 
-    def QuickSort(self, collection):
+    def quick_sort(self, collection):
         def _partition(start, end):
             pivot = collection[end]
             j = start
@@ -59,21 +59,21 @@ class Sort:
             self._swap(collection, end, j)
             return j
 
-        def _quickSort(start, end):
+        def _quick_sort(start, end):
             if start < end:
                 mid = _partition(start, end)
-                _quickSort(start, mid - 1)
-                _quickSort(mid + 1, end)
+                _quick_sort(start, mid - 1)
+                _quick_sort(mid + 1, end)
 
-        _quickSort(0, len(collection) - 1)
+        _quick_sort(0, len(collection) - 1)
 
-    def MergeSort(self, collection):
-        def _mergeSort(subcollection):
+    def merge_sort(self, collection):
+        def _merge_sort(subcollection):
             if len(subcollection) == 1:
                 return subcollection
             else:
-                left = _mergeSort(subcollection[:len(subcollection) // 2])
-                right = _mergeSort(subcollection[len(subcollection) // 2:])
+                left = _merge_sort(subcollection[:len(subcollection) // 2])
+                right = _merge_sort(subcollection[len(subcollection) // 2:])
                 l, r, i = 0, 0, 0
                 while l < len(left) or r < len(right):
                     if r == len(right) or (l < len(left) and left[l] < right[r]):
@@ -85,4 +85,4 @@ class Sort:
                     i += 1
                 return subcollection
 
-        _mergeSort(collection)
+        _merge_sort(collection)
