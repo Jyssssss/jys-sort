@@ -1,3 +1,6 @@
+import random
+
+
 class Sort:
     def _swap(self, collection, i, j):
         collection[i], collection[j] = collection[j], collection[i]
@@ -50,10 +53,11 @@ class Sort:
 
     def quick_sort(self, collection):
         def _partition(start, end):
-            pivot = collection[end]
+            pivot = random.randint(start, end)
+            self._swap(collection, pivot, end)
             j = start
             for i in range(start, end):
-                if collection[i] < pivot:
+                if collection[i] < collection[end]:
                     self._swap(collection, i, j)
                     j += 1
             self._swap(collection, end, j)
@@ -61,9 +65,9 @@ class Sort:
 
         def _quick_sort(start, end):
             if start < end:
-                mid = _partition(start, end)
-                _quick_sort(start, mid - 1)
-                _quick_sort(mid + 1, end)
+                pivot = _partition(start, end)
+                _quick_sort(start, pivot - 1)
+                _quick_sort(pivot + 1, end)
 
         _quick_sort(0, len(collection) - 1)
 
